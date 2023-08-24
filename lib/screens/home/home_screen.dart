@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/constants.dart';
+import 'package:shopping_app/screens/home/components/body.dart';
 
 // stl för att bygga något snabbt
 
@@ -11,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
+      body: Body(),
     );
   }
 
