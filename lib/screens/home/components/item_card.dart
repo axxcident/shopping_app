@@ -4,7 +4,7 @@ import 'package:shopping_app/models/Product.dart';
 
 class ItemCard extends StatelessWidget {
   final Product product;
-  final Function press;
+  final void Function() press;
   const ItemCard({
     super.key,
     required this.product,
