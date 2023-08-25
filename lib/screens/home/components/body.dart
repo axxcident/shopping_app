@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants.dart';
+import 'package:shopping_app/models/Product.dart';
+import 'categories.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -17,66 +19,64 @@ class Body extends StatelessWidget {
                   .headlineMedium
                   ?.copyWith(fontWeight: FontWeight.bold)),
         ),
-        Categories(),
+        const Categories(),
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+          child: GridView.builder(
+              itemCount: products.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: kDefaultPaddin,
+                  crossAxisSpacing: kDefaultPaddin,
+                  childAspectRatio: 0.75),
+              itemBuilder: (context, index) => ItemCard(
+                    product: products[index],
+                  )),
+        ))
+        // const ItemCard()
       ],
     );
   }
 }
 
-class Categories extends StatefulWidget {
-  const Categories({super.key});
+class ItemCard extends StatelessWidget {
+  final Product product;
+  // final Function press;                  Anvand dessa senare!!!!
+  const ItemCard({
+    super.key,
+    required this.product,
+  });
+  // Key key,
 
-  @override
-  State<Categories> createState() => _CategoriesState();
-}
-
-class _CategoriesState extends State<Categories> {
-  List<String> categories = ["Hand Bag", "Jewellery", "Footwear", "Dresses"];
-  int selectedIndex = 0;
+  // this.press,
+  //  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
-      child: SizedBox(
-        height: 25,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
-          itemBuilder: (context, index) => buildCategory(index),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          padding: const EdgeInsets.all(kDefaultPaddin),
+          // height: 180,
+          // width: 160,
+          decoration: BoxDecoration(
+              color: product.color, borderRadius: BorderRadius.circular(16)),
+          child: Image.asset(product.image),
         ),
-      ),
-    );
-  }
-
-  Widget buildCategory(int index) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-        // padding: const EdgeInsets.all(4),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              categories[index],
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: selectedIndex == index ? kTextColor : kTextLightColor),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: kDefaultPaddin / 5),
-              height: 2,
-              width: 30,
-              color: selectedIndex == index ? Colors.black : Colors.transparent,
-            )
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin / 4),
+          child: Text(
+            product.title,
+            style: TextStyle(color: kTextLightColor),
+          ),
         ),
-      ),
+        Text(
+          "\$${product.price}",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 }
