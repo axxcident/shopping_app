@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shopping_app/constants.dart';
 import 'package:shopping_app/models/Product.dart';
+import 'package:shopping_app/screens/details/components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Product product;
@@ -8,6 +11,35 @@ class DetailsScreen extends StatelessWidget {
   // const DetailsScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: product.color,
+      appBar: buildAppBar(context),
+      body: Body(
+        product: product,
+      ),
+    );
+  }
+
+  AppBar buildAppBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: product.color,
+      elevation: 0.0,
+      leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: SvgPicture.asset(
+            "assets/icons/back.svg",
+            color: Colors.white,
+          )),
+      actions: <Widget>[
+        IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset("assets/icons/search.svg")),
+        IconButton(
+            onPressed: () {}, icon: SvgPicture.asset("assets/icons/cart.svg")),
+        const SizedBox(
+          width: kDefaultPaddin / 2,
+        )
+      ],
+    );
   }
 }
