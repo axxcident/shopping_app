@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Dokument\shopping_app\build\windows\CMakeFiles\9881ae8822e23d40f6fb617fe753947a\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{247278CD-2B50-3972-9E1F-0D806395850F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
