@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/models/Product.dart';
+import 'product_title_with_image.dart';
 
 class Body extends StatelessWidget {
   // const Body({super.key, required this.product});
@@ -8,6 +9,7 @@ class Body extends StatelessWidget {
   const Body({super.key, required this.product});
 
   // const Body({Key? key, required this.product}) : super(key: key);
+  // margin: EdgeInsets.only(top: size.height * 0.3),
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +22,15 @@ class Body extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: size.height * 0.3),
+                  margin: EdgeInsets.only(top: size.height * 0.32),
                   height: 500,
-                  decoration: BoxDecoration(color: Colors.white),
-                )
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25))),
+                ),
+                ProductTitleWithImage(product: product)
               ],
             ),
           )
